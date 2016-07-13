@@ -6,11 +6,13 @@ $(document).on('ready', function() {
 	var githubField = appFields.eq(8);
 	var githubURL = githubField.find('a').attr('href');
 
+	var PERSONAL_ACCESS_TOKEN = '';
+
 	if (githubURL && githubURL.length > 0) {
 		// var iframe = document.createElement('iframe');
 		// iframe.src = githubURL;
 		// $('.content').append(iframe);
-		
+
 		var tokens = githubURL.split('/');
 		var USERNAME = tokens[tokens.length - 1];
 		var content = `<div id="github"><div class="content-section"> <div id="github-widget" data-username="${USERNAME}"></div> </div></div>`;
@@ -61,13 +63,15 @@ $(document).on('ready', function() {
 			this.data = JSON.parse(request.responseText);
 
 			if (request.status === 200) {
-
+				var limitRequests = request.getResponseHeader('X-RateLimit-Remaining');
+				console.log(limitRequests);
 				this.error = null;
 
 				this.loadRepos();
 
 			} else {
 				var limitRequests = request.getResponseHeader('X-RateLimit-Remaining');
+				console.log(limitRequests);
 
 				this.error = {
 					message: this.data.message
@@ -108,24 +112,28 @@ $(document).on('ready', function() {
 		GitHubWidget.prototype.getTopLanguages = function(callback) {
 			var langStats = []; // array of URL strings
 
-			// get URLs with language stats for each repository
+			// get URLs with language stats for the first 15 repos
+			var count = 0;
 			this.url.langs.forEach(function(apiURL) {
-				var that = this,
-					request = new XMLHttpRequest();
+				if (count < 15) {
+					var that = this,
+						request = new XMLHttpRequest();
 
-				request.addEventListener('load', function() {
+					request.addEventListener('load', function() {
 
-					var repoLangs = JSON.parse(request.responseText);
-					langStats.push(repoLangs);
+						var repoLangs = JSON.parse(request.responseText);
+						langStats.push(repoLangs);
 
-					if (langStats.length === that.url.langs.length) { // all requests were made
-						calcPopularity.bind(that)();
-					}
+						if (langStats.length === that.url.langs.length) { // all requests were made
+							calcPopularity.bind(that)();
+						}
 
-				}, false);
+					}, false);
 
-				request.open("GET", apiURL, true);
-				request.send(null);
+					request.open("GET", apiURL + '?access_token=' + PERSONAL_ACCESS_TOKEN, true);
+					request.send(null);
+					count++;
+				}
 			}, this);
 
 			// give rank (weights) to the language
@@ -275,7 +283,7 @@ $(document).on('ready', function() {
 			async = async || false;
 
 			var request = new XMLHttpRequest();
-			request.open("GET", url, async);
+			request.open("GET", url + '?access_token=' + PERSONAL_ACCESS_TOKEN, async);
 			request.send();
 
 			return request;
