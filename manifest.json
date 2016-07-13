@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "name": "PennApps Application Grading",
+    "description": "Augments the application grading process",
+    "version": "1.0",
+    "background": {
+        "scripts": [ "background.js" ],
+        "persistent": false
+    },
+    "permissions": [
+        "declarativeContent",
+        "activeTab"
+    ],
+    "content_scripts": [
+    	{
+    		"matches": [
+    			"http://my.pennapps.com/acp/review?*",
+                "https://my.pennapps.com/acp/review?*"
+    		],
+    		"css": ["githubWidget.css"],
+    		"js": [
+    			"content_scripts/jquery.min.js",
+    			"content_scripts/main.js"
+    		]
+    	}
+    ]
+}
