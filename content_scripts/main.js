@@ -5,10 +5,11 @@ $(document).on('ready', function() {
 	var appFields = $('.app');
 	var githubField = appFields.eq(8);
 	var githubURL = githubField.find('a').attr('href');
+	console.log(githubURL);
 
 	var PERSONAL_ACCESS_TOKEN = '';
 
-	if (githubURL && githubURL.length > 0) {
+	if (githubURL && githubURL.indexOf('undefined') == 1&& githubURL.length > 0) {
 		// var iframe = document.createElement('iframe');
 		// iframe.src = githubURL;
 		// $('.content').append(iframe);
