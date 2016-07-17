@@ -10,9 +10,6 @@ $(document).on('ready', function() {
 	var PERSONAL_ACCESS_TOKEN = '';
 
 	if (githubURL && githubURL.indexOf('undefined') == -1 && githubURL.length > 0) {
-		// var iframe = document.createElement('iframe');
-		// iframe.src = githubURL;
-		// $('.content').append(iframe);
 
 		var tokens = githubURL.split('/');
 		var USERNAME = tokens[tokens.length - 1];
@@ -163,7 +160,6 @@ $(document).on('ready', function() {
 
 			GitHubWidget.prototype.render = function(options) {
 				options = options || this.defaultConfig;
-				console.log(options);
 
 				var $root = this.$template;
 
