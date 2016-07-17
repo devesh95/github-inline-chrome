@@ -1,4 +1,4 @@
-# Github Inline Chrome Extension
+# GitHub Inline Chrome Extension
 This is a Chrome extension meant for members of the PennApps organizing team
 working with/in association with the Outreach committee. It is meant to be used
 solely for the purposes for application review and should not be distributed
