@@ -1,4 +1,4 @@
-# PennApps App Grading Chrome Extension
+# Github Inline Chrome Extension
 This is a Chrome extension meant for members of the PennApps organizing team
 working with/in association with the Outreach committee. It is meant to be used
 solely for the purposes for application review and should not be distributed
@@ -11,7 +11,7 @@ without prior permission of PennApps Exec.
 3. Set the _Developer Mode_ option on the top right of the page to true.
 4. Select _Load Unpacked Extension_ and open the cloned/unzipped folder you downloaded in step 1.
 5. Ensure the _Enabled_ checkbox is set to true.
-5. Start grading!
+5. Start grading on your secure portal. (specific to PennApps organizers)
 
 ## How do I know it's working?
 If installed correctly, you should see a GitHub summary view below applications
