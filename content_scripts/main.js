@@ -233,7 +233,7 @@ $(document).on('ready', function() {
 
 					$repoLink.title = reposData[i].description;
 					$repoLink.innerHTML += '<span class="star">' + reposData[i].stargazers_count + '<i class="fa fa-star" style="color: #FFDC00"></i> | </span>';
-					$repoLink.innerHTML += '<span class="repo-name"><a href="' + reposData[i].html_url + '">' + reposData[i].name + '</a></span>';
+					$repoLink.innerHTML += '<span class="repo-name"><a target="_blank" href="' + reposData[i].html_url + '">' + reposData[i].name + '</a></span>';
 					$repoLink.innerHTML += '<span class="updated"><em>&nbsp;Updated: ' + updated.toLocaleDateString() + '&nbsp;</em></span><br/>';
 
 					$reposList.appendChild($repoLink);
